@@ -38,3 +38,19 @@ func GetAllMovies(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 }
+
+// CreateMovie exported
+func CreateMovie(w http.ResponseWriter, r *http.Request) {
+	// c := database.C("movie")
+
+	var m Movie
+
+	err := json.NewDecoder(r.Body).Decode(&m)
+
+	if err != nil {
+		panic(err)
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusCreated)
+}

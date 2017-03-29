@@ -6,9 +6,10 @@ import (
 
 // Movie is exported in order to create or update database documents
 type Movie struct {
-	ID   bson.ObjectId `json:"id" bson:"_id,omitempty"`
-	Name string        `json:"name"`
-	Year int           `json:"year"`
+	ID    bson.ObjectId `json:"id" bson:"_id,omitempty"`
+	Name  string        `json:"name"`
+	Year  int           `json:"year"`
+	Cover string        `json:"cover"`
 }
 
 // Movies exported as collection of Movie
