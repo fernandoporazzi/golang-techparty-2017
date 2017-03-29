@@ -1,28 +1,28 @@
 package movie
 
 import (
-	// "fmt"
-	"net/http"
-	// "log"
 	"encoding/json"
+	"net/http"
+
 	"gopkg.in/mgo.v2"
 )
 
 var (
-	Database *mgo.Database
+	database *mgo.Database
 )
 
-func init()  {
+func init() {
 	session, err := mgo.Dial("mongodb://localhost:27017/techparty-golang")
 	if err != nil {
 		panic(err)
 	}
 
-   	Database = session.DB("techparty-golang")
+	database = session.DB("techparty-golang")
 }
 
+// GetAllMovies retrieves all movies in the database
 func GetAllMovies(w http.ResponseWriter, r *http.Request) {
-	c := Database.C("movie")
+	c := database.C("movie")
 	result := Movies{}
 
 	err := c.Find(nil).All(&result)
@@ -31,10 +31,10 @@ func GetAllMovies(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
 	if err = json.NewEncoder(w).Encode(result); err != nil {
 		panic(err)
 	}
-
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
 }

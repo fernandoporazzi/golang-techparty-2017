@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
 	"log"
-	// "github.com/golang-techparty-2017/controllers"
-	"./movie"
+	"net/http"
+
+	"github.com/golang-techparty-2017/movie"
+	"github.com/gorilla/mux"
 )
 
 func main() {
