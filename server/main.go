@@ -31,8 +31,8 @@ func main() {
 		Path("/movie").
 		HandlerFunc(movie.CreateMovie)
 
+  originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"})
 
-  corsObj := handlers.AllowedOrigins([]string{"*"})
-
-	log.Fatal(http.ListenAndServe(":8001", handlers.CORS(corsObj)(router)))
+	log.Fatal(http.ListenAndServe(":8001", handlers.CORS(originsOk, methodsOk)(router)))
 }

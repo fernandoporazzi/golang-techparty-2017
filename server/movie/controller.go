@@ -15,6 +15,8 @@ import (
 
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+
+	"github.com/gorilla/mux"
 )
 
 var (
@@ -39,6 +41,7 @@ func getHash() string {
 }
 
 func uploadImage(h string, r *http.Request) {
+	// 33.554432 MB
 	r.ParseMultipartForm(32 << 20)
 
 	file, _, err := r.FormFile("cover")

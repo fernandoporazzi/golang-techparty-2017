@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Sidebar from './sidebar/Sidebar';
+import View from './view/View';
 import './App.css';
 
 class App extends Component {
@@ -32,16 +34,27 @@ class App extends Component {
       })
   }
 
+  handleSubmitNewMovie(formData) {
+    console.log(formData);
+    let self = this;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'http://localhost:8001/movie', true);
+    xhr.onload = function(e) {
+      let resp = JSON.parse(xhr.responseText);
+
+      self.setState({movies: self.state.movies.concat(resp)});
+    };
+
+    xhr.send(formData);
+  }
+
   render() {
-    const basePath = 'http://localhost:8001/uploads/' ;
-
-    let m = this.state.movies.map((obj, index) => {
-      return <span key={index}>{obj.name} <img src={basePath+obj.cover} /> </span>
-    });
-
     return (
       <div className="App">
-        {m}
+        <Sidebar onSubmitNewMovie={this.handleSubmitNewMovie.bind(this)}/>
+        <View movies={this.state.movies} />
       </div>
     );
   }

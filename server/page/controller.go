@@ -12,7 +12,7 @@ var templates = template.Must(template.ParseFiles(
 
 // Index renders landing page
 func Index(w http.ResponseWriter, r *http.Request) {
-	res, err := http.Get("http://localhost:3000/movie")
+	res, err := http.Get("http://localhost:8001/movie")
 
 	if err != nil {
 		panic(err)

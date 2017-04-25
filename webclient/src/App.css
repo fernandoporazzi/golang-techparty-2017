@@ -1,24 +1,64 @@
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #E7EBED;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #ccc;
+}
+
 .App {
-  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.sidebar {
+  width: 350px;
+  background: #fff;
+  padding: 0 20px;
+  overflow: auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.form-group {
+  width: 100%;
+  margin: 30px 0;
 }
 
-.App-intro {
-  font-size: large;
+.form-group label {
+  width: 100%;
+  display: block;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group input[type="number"],
+.form-group textarea {
+  width: 100%;
+  height: 30px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+.form-group.checkbox {
+  float:left;
+  margin: 0px 0 30px;
+}
+
+.form-group.checkbox label,
+.form-group.checkbox input {
+  float: left;
+  width: initial;
+}
+
+.view {
+  background-color: #f2f2f2;
+
+  -webkit-flex: 1;
+          flex: 1;
 }
